@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
     if len(sys.argv) != 3:
         script_path = Path(__file__).resolve().relative_to(Path.cwd())
-        print(f"Usage: python {script_path} <file_1> <file_2>")
+        print(f"Usage: python {script_path} <file_1.txt> <file_2.txt>")
         sys.exit(1)
 
     with open(sys.argv[1], 'r') as f:
