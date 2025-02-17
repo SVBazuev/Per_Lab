@@ -1,36 +1,25 @@
 import sys
 from pathlib import Path
+import numpy as np
 
 
-def calculate_minimum_moves(nums):
-    # Сортируем массив для нахождения медианы
-    nums.sort()
-    n = len(nums)
+def calculate_minimum_moves_numpy(nums):
+    nums_array = np.array(nums)
+    median = np.median(nums_array)
+    moves = np.sum(np.abs(nums_array - median))
 
-    # Находим медиану
-    if n % 2 == 1:
-        median = nums[n // 2]
-    else:
-        # Для четного количества берем среднее
-        median = (nums[n // 2 - 1] + nums[n // 2]) // 2
-
-    # Считаем количество ходов
-    moves = sum(abs(num - median) for num in nums)
-    return moves
-
+    return int(moves)
 
 if __name__ == "__main__":
 
     if len(sys.argv) != 2:
-        script_path = Path(__file__).resolve().relative_to(Path.cwd())
-        print(f"Usage: python {script_path} <file_1.txt>")
+        script_path = Path(__file__).relative_to(Path.cwd())
+        print(f"Usage: python {script_path} <path_to_file_1.txt>")
         sys.exit(1)
 
     with open(sys.argv[1], 'r') as f:
         nums = [int(l.strip()) for l in f.readlines() if l != '']
 
-    # Вычисляем минимальное количество ходов
-    result = calculate_minimum_moves(nums)
+    result = calculate_minimum_moves_numpy(nums)
 
-    # Выводим результат
     print(result)

@@ -11,19 +11,19 @@ class Circle:
     def position_points(self, points):
         result = []
         for p in points:
-            # Вычисляем расстояние от центра окружности до точки
             distance = math.sqrt(
                 (p[0] - self.center[0]) ** 2
                 + (p[1] - self.center[1]) ** 2
                 )
 
-            # Сравниваем расстояние с радиусом
             if distance == self.radius:
-                result.append('0')  # Точка на окружности
+                result.append('0')
+
             elif distance < self.radius:
-                result.append('1')  # Точка внутри окружности
+                result.append('1')
+
             else:
-                result.append('2')  # Точка снаружи окружности
+                result.append('2')
 
         return result
 
@@ -32,8 +32,11 @@ class Circle:
 if __name__ == "__main__":
 
     if len(sys.argv) != 3:
-        script_path = Path(__file__).resolve().relative_to(Path.cwd())
-        print(f"Usage: python {script_path} <file_1.txt> <file_2.txt>")
+        script_path = Path(__file__).relative_to(Path.cwd())
+        print(
+            f"Usage: python {script_path} "
+            "<path_to_file_1.txt> <path_to_file_2.txt>"
+            )
         sys.exit(1)
 
     with open(sys.argv[1], 'r') as f:

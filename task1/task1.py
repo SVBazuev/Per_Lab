@@ -8,20 +8,14 @@ class CircularArray:
 
     def get_path(self, m):
         path = []
-        current_index = 0  # Начинаем с первого элемента
+        current_index = 0
 
         while True:
-            # Находим индекс конца текущего интервала
             end_index = (current_index + m - 1) % self.n
-
-            # Добавляем элемент в путь
             path.append(str(current_index + 1))
-
-            # Если мы достигли первого элемента, выходим из цикла
             if end_index == 0:
                 break
 
-            # Обновляем текущий индекс для следующего интервала
             current_index = end_index
 
         return ''.join(path)
@@ -30,7 +24,7 @@ class CircularArray:
 if __name__ == "__main__":
 
     if len(sys.argv) != 3:
-        script_path = Path(__file__).resolve().relative_to(Path.cwd())
+        script_path = Path(__file__).relative_to(Path.cwd())
         print(f"Usage: python {script_path} <n> <m>")
         sys.exit(1)
 
